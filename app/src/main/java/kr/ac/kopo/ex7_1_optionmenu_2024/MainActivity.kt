@@ -6,17 +6,21 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 
 class MainActivity : AppCompatActivity() {
     lateinit var linear : LinearLayout
-    lateinit var btn : Button
+    lateinit var editDegree : EditText
+    lateinit var imgv : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         linear = findViewById<LinearLayout>(R.id.linear)
-        btn = findViewById<Button>(R.id.btn)
+        editDegree = findViewById<EditText>(R.id.editDegree)
+        imgv = findViewById<ImageView>(R.id.imgv)
     }
 
     // 옵션메뉴 등록
@@ -32,29 +36,29 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when(item.itemId){
-            R.id.itemRed -> {
-                linear.setBackgroundColor(Color.RED)
+            R.id.itemRotate -> {
+                imgv.rotation = editDegree.text.toString().toFloat()
                 return true
             }
-            R.id.itemGreen -> {
-                linear.setBackgroundColor(Color.GREEN)
+
+            R.id.itemHanra -> {
+                imgv.setImageResource(R.drawable.img1)
+                item.setChecked(true)
                 return true
             }
-            R.id.itemBlue -> {
-                linear.setBackgroundColor(Color.BLUE)
+
+            R.id.itemChuja -> {
+                imgv.setImageResource(R.drawable.img2)
+                item.setChecked(true)
                 return true
             }
-            R.id.btnRotate -> {
-                btn.rotation += 60f
-                return true
-            }
-            R.id.btnZoomin -> {
-                btn.scaleX = 2f
+
+            R.id.itemBum -> {
+                imgv.setImageResource(R.drawable.img3)
+                item.setChecked(true)
                 return true
             }
         }
-
-
         return false
     }
 }
